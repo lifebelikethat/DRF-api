@@ -1,0 +1,1088 @@
+openapi: 3.0.3
+info:
+  title: crud api
+  version: 0.0.0
+paths:
+  /api/books/:
+    get:
+      operationId: books_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookList'
+          description: ''
+    post:
+      operationId: books_create
+      tags:
+      - books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBook'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateBook'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateBook'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBook'
+          description: ''
+  /api/books/{title}/:
+    get:
+      operationId: books_retrieve
+      parameters:
+      - in: path
+        name: title
+        schema:
+          type: string
+        required: true
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+  /api/books/{title}/{page_number}/:
+    get:
+      operationId: books_retrieve_2
+      parameters:
+      - in: path
+        name: page_number
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: title
+        schema:
+          type: string
+        required: true
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+  /api/books/{title}/pages/:
+    get:
+      operationId: books_pages_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: path
+        name: title
+        schema:
+          type: string
+        required: true
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPageList'
+          description: ''
+    post:
+      operationId: books_pages_create
+      parameters:
+      - in: path
+        name: title
+        schema:
+          type: string
+        required: true
+      tags:
+      - books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrentBookCreatePage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CurrentBookCreatePage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CurrentBookCreatePage'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentBookCreatePage'
+          description: ''
+  /api/categories/:
+    get:
+      operationId: categories_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - categories
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCategoryList'
+          description: ''
+  /api/categories/{name}/:
+    get:
+      operationId: categories_retrieve
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        required: true
+      tags:
+      - categories
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+  /api/categories/{name}/items/:
+    get:
+      operationId: categories_items_list
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        required: true
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - categories
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedItemList'
+          description: ''
+  /api/genres/:
+    get:
+      operationId: genres_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - genres
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedGenreList'
+          description: ''
+    post:
+      operationId: genres_create
+      tags:
+      - genres
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGenre'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateGenre'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateGenre'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateGenre'
+          description: ''
+  /api/items/:
+    get:
+      operationId: items_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - items
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedItemList'
+          description: ''
+    post:
+      operationId: items_create
+      tags:
+      - items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateItem'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateItem'
+          description: ''
+  /api/items/{name}/:
+    get:
+      operationId: items_retrieve
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        required: true
+      tags:
+      - items
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+          description: ''
+    put:
+      operationId: items_update
+      parameters:
+      - in: path
+        name: name
+        schema:
+          type: string
+        required: true
+      tags:
+      - items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EditItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EditItem'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditItem'
+          description: ''
+  /api/pages/:
+    get:
+      operationId: pages_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - pages
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPageList'
+          description: ''
+    post:
+      operationId: pages_create
+      tags:
+      - pages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBook'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateBook'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateBook'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBook'
+          description: ''
+  /api/pages/{id}/:
+    get:
+      operationId: pages_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - pages
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+    put:
+      operationId: pages_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - pages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdatePage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdatePage'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePage'
+          description: ''
+  /api/users/:
+    get:
+      operationId: users_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserList'
+          description: ''
+    post:
+      operationId: users_create
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserserializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateUserserializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateUserserializer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserserializer'
+          description: ''
+  /api/users/{username}/:
+    get:
+      operationId: users_retrieve
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: users_update
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EditUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EditUser'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditUser'
+          description: ''
+  /api/users/{username}/items/:
+    get:
+      operationId: users_items_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedItemList'
+          description: ''
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        genre:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        author:
+          type: array
+          items:
+            type: string
+            format: uri
+          readOnly: true
+        pages:
+          type: string
+          format: uri
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 200
+        published:
+          type: string
+          format: date
+          readOnly: true
+      required:
+      - author
+      - description
+      - genre
+      - pages
+      - published
+      - title
+      - url
+    Category:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        items:
+          type: string
+          format: uri
+          readOnly: true
+      required:
+      - id
+      - items
+      - name
+      - url
+    CreateBook:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 200
+        published:
+          type: string
+          format: date
+          readOnly: true
+        author:
+          type: array
+          items:
+            type: integer
+        genre:
+          type: array
+          items:
+            type: integer
+      required:
+      - author
+      - description
+      - genre
+      - published
+      - title
+    CreateGenre:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 200
+      required:
+      - name
+    CreateItem:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 200
+        owner:
+          type: integer
+          nullable: true
+        category:
+          type: array
+          items:
+            type: integer
+      required:
+      - description
+      - name
+    CreateUserserializer:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          maxLength: 128
+      required:
+      - password
+      - username
+    CurrentBookCreatePage:
+      type: object
+      properties:
+        page:
+          type: integer
+        content:
+          type: string
+          maxLength: 512
+      required:
+      - content
+      - page
+    EditItem:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 200
+        category:
+          type: array
+          items:
+            type: integer
+        categories:
+          type: array
+          items:
+            type: string
+            format: uri
+          readOnly: true
+      required:
+      - categories
+      - description
+      - name
+    EditUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        items:
+          type: array
+          items:
+            type: integer
+      required:
+      - items
+      - username
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        book:
+          type: array
+          items:
+            type: string
+            format: uri
+      required:
+      - book
+      - id
+      - name
+    Item:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        owner:
+          type: string
+          format: uri
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 200
+        acquisition_date:
+          type: string
+          format: date-time
+          readOnly: true
+        category:
+          type: array
+          items:
+            type: string
+            format: uri
+          readOnly: true
+      required:
+      - acquisition_date
+      - category
+      - description
+      - id
+      - name
+      - owner
+      - url
+    Page:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        book:
+          type: string
+          readOnly: true
+        page:
+          type: integer
+        content:
+          type: string
+          maxLength: 512
+      required:
+      - book
+      - content
+      - page
+      - url
+    PaginatedBookList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+    PaginatedCategoryList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    PaginatedGenreList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+    PaginatedItemList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    PaginatedPageList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page'
+    PaginatedUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    UpdatePage:
+      type: object
+      properties:
+        page:
+          type: integer
+        content:
+          type: string
+          maxLength: 512
+      required:
+      - content
+      - page
+    User:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        items:
+          type: string
+          format: uri
+          readOnly: true
+        books:
+          type: array
+          items:
+            type: string
+            format: uri
+          readOnly: true
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+      required:
+      - books
+      - id
+      - items
+      - url
+      - username
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

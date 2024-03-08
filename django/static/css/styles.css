@@ -1,0 +1,128 @@
+:root{
+    --bodyBackground: #151919;
+    --mainBackground: #3d434c;
+    --secondaryBodyBackground: #2b3645;
+    --secondaryBackground: #4c5f6e;
+    --borderColor: #c9fffb;
+    --mainText: white;
+    --secondaryText: #8781b7;
+}
+html, body{
+    font-family: 'Proxima Nova', 'Montserrat', 'Poppins';
+    padding: 0;
+    margin: 0;
+    color: var(--mainText);
+    border-color: var(--borderColor);
+    background-color: var(--bodyBackground);
+    font-size: 22px;
+}
+
+.s1{
+    background-color: var(--bodyBackground);
+    border-bottom: 2px solid var(--borderColor);
+}
+
+.s2{
+    background-color: var(--secondaryBodyBackground);
+    border-bottom: 2px solid var(--borderColor);
+}
+
+.s1:last-child{
+    border-bottom: 0px;
+}
+
+.s2:last-child{
+    border-bottom: 0px;
+}
+
+.scroll-links{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.intro-wrapper{
+    background-color: var(--mainBackground);
+    padding: 40px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas:
+    'name-wrapper img-wrapper'
+    'para-wrapper img-wrapper'
+    ;
+    box-shadow: -19px 16px 9px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -19px 16px 9px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: -19px 16px 9px -6px rgba(0,0,0,0.75);
+}
+
+.name-wrapper{
+    grid-area: name-wrapper;
+}
+
+.para-wrapper{
+    grid-area: para-wrapper;
+    padding-top: 40px;
+}
+
+.para-wrapper h4{
+    padding-right: 80px;
+}
+
+.img-wrapper{
+    grid-area: img-wrapper;
+}
+
+.img-wrapper img{
+    height: 500px;
+    width: 500px;
+    object-fit: cover;
+    border-radius: 80%;
+}
+
+a{
+    color: lightblue;
+    text-decoration: none;
+}
+
+a:hover{
+    color: darkcyan;
+}
+
+.main-container{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    align-content: center;
+}
+
+.skills-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    font-size: 20px;
+}
+
+.projects-container{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 50px;
+    justify-content: center;
+}
+
+.projects-container img{
+    object-fit: cover;
+}
+
+#projects h1{
+    padding-bottom: 20px;
+    text-align:center;
+}
+
+@media screen and (max-width: 1200px){
+    .main-container{
+        width: 95%;
+    }
+}
