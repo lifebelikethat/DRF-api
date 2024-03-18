@@ -2,7 +2,7 @@
 
 ## Overview
 RESTful API made to showcase Django and Django Rest Framework.
-Deployed at drf-api-gules.vercel.app/api/
+Deployed using [Vercel](drf-api-gules.vercel.app/api/).
 
 ## Built With
 - Django
