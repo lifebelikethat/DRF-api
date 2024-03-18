@@ -5,7 +5,7 @@ To run it locally:
 ```
 # clone the repository
 
-# create a venv
+# create a venv if needed
 python3 -m venv venv
 
 # install the modules
