@@ -10,4 +10,7 @@ python3 -m venv venv
 
 # install the modules
 pip install -r requirements.txt
+
+# run server on port 8000
+python3 manage.py runserver
 ```
