@@ -2,15 +2,12 @@
 
 ## Overview
 RESTful API made to showcase Django and Django Rest Framework.
+Deployed at drf-api-gules.vercel.app/api/
 
-## Quick Setup
-```
-# install modules
-pip3 install -r requirements.txt
-
-# run server on port 8000
-python3 manage.py runserver
-```
+## Built With
+- Django
+- Django Rest Framework
+- Vercel
 
 ## Testing
 Install the required modules with `pip3 install -r requirements.txt`.
