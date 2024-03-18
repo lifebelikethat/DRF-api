@@ -1,16 +1,18 @@
-# Portfolio
-This is my personal portfolio built using the Django Framework. I have deployed it on lifebelikethat.pythonanywhere.com using pythonanywhere.
+# DRF-api
 
-To run it locally:
+## Overview
+RESTful API made to showcase Django and Django Rest Framework.
+
+## Quick Setup
 ```
-# clone the repository
-
-# create a venv if needed
-python3 -m venv venv
-
-# install the modules
-pip install -r requirements.txt
+# install modules
+pip3 install -r requirements.txt
 
 # run server on port 8000
 python3 manage.py runserver
 ```
+
+## Testing
+Install the required modules with `pip3 install -r requirements.txt`.
+
+To run the tests, run `python3 manage.py test`.
